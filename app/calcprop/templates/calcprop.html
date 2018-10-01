@@ -1,0 +1,116 @@
+{% extends 'index.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}
+    Получение информации и свойств о веществах
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Калькулятор свойств</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{ url_for('calcprop_blueprint.calculate_prop') }}" method="POST">
+                            {{ wtf.quick_form(prop_form) }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-warning">
+                    <div class=panel-heading>
+                        <h3 class="panel-title">Результат для <b><i>{{ fluid_dict.get(current_fluid) }}</i></b></h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Параметр</th>
+                                    <th>Значение</th>
+                                    <th>Единица измерения</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Давление</td>
+                                    <td>{{ calcPropObject.pressure }}</td>
+                                    <td>Па</td>
+                                </tr>
+                                <tr>
+                                    <td>Температура</td>
+                                    <td>{{ calcPropObject.temperature }}</td>
+                                    <td>Кельвин</td>
+                                </tr>
+                                <tr>
+                                    <td>Энтальпия</td>
+                                    <td>{{ calcPropObject.enthalpy }}</td>
+                                    <td>кДж/кг</td>
+                                </tr>
+                                <tr>
+                                    <td>Энтропия</td>
+                                    <td>{{ calcPropObject.entropy }}</td>
+                                    <td>кДж/(кг*К)</td>
+                                </tr>
+                                <tr>
+                                    <td>Удельный объем</td>
+                                    <td>{{ calcPropObject.volume }}</td>
+                                    <td>м^3/кг</td>
+                                </tr>
+                                <tr>
+                                    <td>Плотность</td>
+                                    <td>{{ calcPropObject.density }}</td>
+                                    <td>кг/м^3</td>
+                                </tr>
+                                <tr>
+                                    <td>Степень сухости</td>
+                                    <td>{{ calcPropObject.quality }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Состояние вещества</td>
+                                    <td>{{ calcPropObject.phase }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Теплопроводность</td>
+                                    <td>{{ calcPropObject.conductivity }}</td>
+                                    <td>Вт/(м*К)</td>
+                                </tr>
+                                <tr>
+                                    <td>Динамическая вязкость</td>
+                                    <td>{{ calcPropObject.viscosity }}</td>
+                                    <td>Па*с</td>
+                                </tr>
+                                <tr>
+                                    <td>Скорость звука</td>
+                                    <td>{{ calcPropObject.speed_of_sound }}</td>
+                                    <td>м/с</td>
+                                </tr>
+                                <tr>
+                                    <td>Число Прандтля</td>
+                                    <td>{{ calcPropObject.prandtl }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Изобарная теплоемкость</td>
+                                    <td>{{ calcPropObject.cp }}</td>
+                                    <td>кДж/(кг*К)</td>
+                                </tr>
+                                <tr>
+                                    <td>Изохорная теплоемкость</td>
+                                    <td>{{ calcPropObject.cv }}</td>
+                                    <td>кДж/(кг*К)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

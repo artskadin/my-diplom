@@ -1,0 +1,51 @@
+{% extends "bootstrap/base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+            Главная
+        {% endblock %} | My diploma
+    </title>
+</head>
+<body>
+    {% block navbar %}
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ url_for('index') }}">MyDiplom</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('index')}}">Главная</a></li>
+                        <li><a href="{{ url_for('fluid_info_blueprint.get_info') }}">Информация о веществах</a></li>
+                        <li><a href="{{ url_for('calcprop_blueprint.calculate_prop') }}">Расчет свойства веществ</a></li>
+                        <li><a href="{{ url_for('orc_blueprint.get_orc') }}">Оценка источника тепла</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+    {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2"></div>
+                <div class="col-lg-8 col-md-8">
+                    {% block page_cont %}
+                        Main page
+                    {% endblock %}
+                </div>
+                <div class="col-lg-2 col-md-2"></div>
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>

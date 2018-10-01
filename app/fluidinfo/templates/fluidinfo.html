@@ -1,0 +1,106 @@
+{% extends 'index.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}
+    Получение информации и свойств о веществах
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2">
+            </div>
+            <div class="col-lg-8 col-md-8">
+                {% block page_cont %}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Информация о веществе</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ wtf.quick_form(fluid_info_form) }}
+                        <br>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        Характеристика для <b>{{ fluid_dict.get(fluid) }}</b>
+                      </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Параметр</th>
+                                <th>Значение</th>
+                                <th>Единица измерения</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Критическое давление</td>
+                                <td>{{ critPressure }}</td>
+                                <td>Бар</td>
+                            </tr>
+                            <tr>
+                                <td>Критическая температура</td>
+                                <td>{{ critTemperature }}</td>
+                                <td>°С</td>
+                            </tr>
+                            <tr>
+                                <td>Критическая плотность</td>
+                                <td>{{ critDensity }}</td>
+                                <td>кг/м^3</td>
+                            </tr>
+                            <tr>
+                                <td>Минимальное давление</td>
+                                <td>{{ minPressure }}</td>
+                                <td>Бар</td>
+                            </tr>
+                            <tr>
+                                <td>Максимальное давление</td>
+                                <td>{{ maxPressure }}</td>
+                                <td>Бар</td>
+                            </tr>
+                            <tr>
+                                <td>Минимальная температура</td>
+                                <td>{{ minTemperature }}</td>
+                                <td>°С</td>
+                            </tr>
+                            <tr>
+                                <td>Максимальная температура</td>
+                                <td>{{ maxTemperature }}</td>
+                                <td>°С</td>
+                            </tr>
+                            <tr>
+                                <td>Молярная масса</td>
+                                <td>{{ molarMass }}</td>
+                                <td>кг/мол</td>
+                            </tr>
+                            <tr>
+                                <td><abbr title="Потенциал глобального потепления">ПГП</abbr> на 20 лет</td>
+                                <td>{{ gwp20 }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><abbr title="Потенциал глобального потепления">ПГП</abbr> на 100 лет</td>
+                                <td>{{ gwp100 }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><abbr title="Потенциал глобального потепления">ПГП</abbr> на 500 лет</td>
+                                <td>{{ gwp500 }}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Класс взрывоопасности</td>
+                                <td>{{ flammabilirtHazard }}</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2">
+{% endblock %}
+        </div>
+    </div>
+{% endblock %}

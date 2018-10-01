@@ -1,0 +1,111 @@
+{% extends 'index.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+    Расчет установки на Органическом цикле Ренкина
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Параметры источника тепла</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{ url_for('orc_blueprint.get_orc') }}" method="POST">
+                            {{ wtf.quick_form(orc_form) }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h3>Поиск оптимального рабочего тела среди выбранных</h3>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Рабочее тело</th>
+                      <th scope="col">Т испарения, ˚C</th>
+                      <th scope="col">Т крит, ˚C</th>
+                      <th scope="col">P конд, бар</th>
+                      <th scope="col">h нас жид, кДж/кг</th>
+                      <th scope="col">h нас пара, кДж/кг</th>
+                      <th scope="col">p1, бар</th>
+                      <th scope="col">h конд, кДж/кг</th>
+                      <th scope="col">Rs, кДж/кг</th>
+                      <th scope="col">Rl, кДж/кг</th>
+                      <th scope="col">Predictor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for element in predictor2 %}
+                    <tr>
+                      <th scope="row">{{ element[0] }}</th>
+                      <td>{{ element[1] }}</td>
+                      <td>{{ element[2] }}</td>
+                      <td>{{ element[3] }}</td>
+                      <td>{{ element[4] }}</td>
+                      <td>{{ element[5] }}</td>
+                      <td>{{ element[6] }}</td>
+                      <td>{{ element[7] }}</td>
+                      <td>{{ element[8] }}</td>
+                      <td>{{ element[9] }}</td>
+                      <td>{{ element[10] }}</td>
+                      <td>{{ element[11] }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h3>Поиск оптимального рабочего тела среди всех 122 тел</h3>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Рабочее тело</th>
+                      <th scope="col">Т испарения, ˚C</th>
+                      <th scope="col">Т крит, ˚C</th>
+                      <th scope="col">P конд, бар</th>
+                      <th scope="col">h нас жид, кДж/кг</th>
+                      <th scope="col">h нас пара, кДж/кг</th>
+                      <th scope="col">p1, бар</th>
+                      <th scope="col">h конд, кДж/кг</th>
+                      <th scope="col">Rs, кДж/кг</th>
+                      <th scope="col">Rl, кДж/кг</th>
+                      <th scope="col">Predictor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for element in predictor1 %}
+                    <tr>
+                      <th scope="row">{{ element[0] }}</th>
+                      <td>{{ element[1] }}</td>
+                      <td>{{ element[2] }}</td>
+                      <td>{{ element[3] }}</td>
+                      <td>{{ element[4] }}</td>
+                      <td>{{ element[5] }}</td>
+                      <td>{{ element[6] }}</td>
+                      <td>{{ element[7] }}</td>
+                      <td>{{ element[8] }}</td>
+                      <td>{{ element[9] }}</td>
+                      <td>{{ element[10] }}</td>
+                      <td>{{ element[11] }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
